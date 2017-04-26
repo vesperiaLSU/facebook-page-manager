@@ -1,0 +1,31 @@
+<div class="main">
+    <!--<input title="feed" type='text' class='form-control' ng-model='home.feed' />-->
+    <!--<button class='btn btn-default' ng-click='home.post()'>post to facebook</button>-->
+    <div class="container main-content">
+        <div class="sidebar">
+            <div style="display: inline-grid;">
+                <img class="page-logo" style="height:180px" src="styles/lsu.jpg"/>
+                <h5><strong>LSU Football Fan Club</strong></h5>
+                <p style="color: #90949c">@TheLSUFan</p>
+            </div>
+            <ul role="menu" style="padding:0">
+                <li class="list">All Posts</li>
+                <li class="list">Published Posts</li>
+                <li class="list">Unpublished Posts</li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    /*global $*/
+    $(function () {
+        $('.list').hover(function () {
+            $(this).addClass('btn-info');
+        }, function () {
+            $(this).removeClass('btn-info');
+        });
+    });
+</script>

@@ -77,5 +77,6 @@
         res.render("index.html");
     });
 
-    app.listen(8080);
+    //push to codeship
+    app.listen(process.env.PORT, process.env.IP);
 }());

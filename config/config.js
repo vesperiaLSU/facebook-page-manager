@@ -7,7 +7,8 @@
         },
         facebookAPI: {
             getPageAccessToken: 'https://graph.facebook.com/v2.9/1474589055913389?fields=access_token',
-            postFeed: 'https://graph.facebook.com/v2.9/1474589055913389/feed'
+            postFeed: 'https://graph.facebook.com/v2.9/1474589055913389/feed',
+            getAllFeeds: 'https://graph.facebook.com/v2.9/1474589055913389/promotable_posts'
         }
     };
 }());

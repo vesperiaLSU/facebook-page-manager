@@ -19,12 +19,16 @@
                     controller: 'LoginCtrl as lg'
                 })
                 .state('home', {
-                    url: '/home?access_token&user',
+                    url: '/home?access_token&user&url',
                     templateUrl: 'views/home.html',
                     controller: 'HomeCtrl as home',
                     resolve: {
+                        resource: 'resourceService',
                         auth: function($stateParams) {
                             return $stateParams;
+                        },
+                        feeds: function(resourceService, $stateParams) {
+                            return resourceService.getAllFeeds.get({token : $stateParams.access_token}).$promise;
                         }
                     }
                 });

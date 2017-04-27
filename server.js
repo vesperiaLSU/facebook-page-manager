@@ -6,7 +6,6 @@
         passport = require('passport'),
         Strategy = require('passport-facebook').Strategy,
         config = require('./config/config.js'),
-        ensureLogin = require('connect-ensure-login'),
         request = require("request-promise");
 
 
@@ -30,7 +29,6 @@
     app.use(passport.initialize());
     app.use(passport.session());
 
-
     app.get('/auth/facebook',
         passport.authenticate('facebook', {
             scope: ['publish_pages', 'manage_pages']
@@ -47,24 +45,33 @@
                     access_token: req.user
                 }
             };
-            request(options)
-                .then(fbRes => {
-                    const response = JSON.parse(fbRes);
-                    res.redirect('/#!/home?access_token=' + response.access_token + '&user=' + req.authInfo.displayName);
-                })
-                .catch(error => {
-                    console.log(error.message);
-                });
+            const profileOptions = {
+                method: 'GET',
+                uri: 'https://graph.facebook.com/v2.9/' + req.authInfo.id + '/picture',
+                qs: {
+                    width:121,
+                    height:100,
+                    access_token: req.user,
+                    redirect: false
+                }
+            };
+            request(profileOptions).then(profileRes => {
+                const data = JSON.parse(profileRes);
+                const url = encodeURIComponent(data.data.url);
+                request(options)
+                    .then(fbRes => {
+                        const response = JSON.parse(fbRes);
+                        res.redirect('/#!/home?access_token=' + response.access_token + '&user=' + req.authInfo.displayName + '&url=' + url);
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                    });
+            }).catch(error => {
+                console.log(error.message);
+            });
+
+
         });
-
-    // app.get('/profile',
-    //     ensureLogin.ensureLoggedIn('/'),
-    //     function(req, res) {
-    //         res.render('profile', {
-    //             user: req.user
-    //         });
-    //     });
-
 
     app.get("/", function (req, res) {
         res.render("index.html");

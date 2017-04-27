@@ -16,8 +16,16 @@
     padding: 7px 8px;
     font-weight: 600;
     cursor: pointer;
-    border-radius: 0px;
+    border-radius: 0 !important;
     margin-right: 10px;
+    background-color: #e9ebee;
+    border: none;
+}
+
+.fb-theme {
+    color: #fff;
+    background-color: rgba(51,122,183, .7);
+    border-color: #337ab7;
 }
 
 .main-content {
@@ -64,3 +72,113 @@
     position: relative;
     padding-bottom: 100px;
 }
+
+.sidebar .my-info {
+    position: relative;
+    top: 450px;
+}
+
+.sidebar .my-info .user-info .options {
+    font-size: 16px;
+    display: inline-block;
+}
+
+.sidebar .my-info .user-info .user-name {
+    color: grey;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.feed-pane {
+    height: 100%;
+    width: 82%;
+    overflow-y: auto;
+    padding: 40px 15px 180px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.feed-pane .message-form {
+    position: fixed;
+    bottom: 5px;
+    background: #fff;
+    width: 49%;
+    right: 20%;
+}
+
+.feed-pane .feed-wrap {
+    position: relative;
+    margin-top: 20px;
+}
+
+.sidebar .my-info .user-pic {
+    display: inline-block;
+    vertical-align: top;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.feed-pane .feed-wrap .feed-info {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 5px;
+}
+
+.feed-pane .feed-wrap .feed-info .user-info {
+    color: grey;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.post-count {
+    display: block;
+    text-align: center;
+    position: relative;
+    top: 8px;
+    font-size: 16px;
+}
+
+.post-label {
+    color: grey;
+    display: block;
+    text-align: center;
+}
+
+.feedContent {
+    font-size: 18px;
+    font-family: Arial, Calibri, sans-serif;
+    padding: 5px 13px;
+    text-align: left;
+    background-color: #fff;
+    width: 100%;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+.publish-btn {
+    background-color: rgba(59, 89, 152, .9);
+    color: #fff;
+    border-radius: 0;
+    width: 10%;
+    position: relative;
+    left: 90%;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+#dropUpBtn {
+    width: initial;
+    margin-left: 3px;
+}
+
+.actionPoint {
+    padding: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.no-padding {
+    padding: 0;
+}
+

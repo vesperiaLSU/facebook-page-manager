@@ -1,19 +1,62 @@
 <div class="main">
-    <!--<input title="feed" type='text' class='form-control' ng-model='home.feed' />-->
-    <!--<button class='btn btn-default' ng-click='home.post()'>post to facebook</button>-->
-    <div class="container main-content">
+    <div class="container main-content" style="padding-right: 0">
         <div class="sidebar">
             <div style="display: inline-grid;">
                 <img class="page-logo" style="height:180px" src="styles/lsu.jpg"/>
                 <h5><strong>LSU Football Fan Club</strong></h5>
                 <p style="color: #90949c">@TheLSUFan</p>
             </div>
-            <ul role="menu" style="padding:0">
-                <li class="list">All Posts</li>
-                <li class="list">Published Posts</li>
-                <li class="list">Unpublished Posts</li>
+            <ul role="menu" class="list-group" style="padding: 0;">
+                <li ng-click="home.getAllFeeds()" style="border: none; border-radius: 0" class="list list-group-item active">All Posts</li>
+                <li ng-click="home.getFeeds(true)" style="border: none; border-radius: 0" class="list list-group-item">Published Posts</li>
+                <li ng-click="home.getFeeds(false)" style="" class="list list-group-item">Unpublished Posts</li>
             </ul>
+            <div class="my-info col-sm-12" style="display:inline-flex">
+                <img class="user-pic" ng-src="{{ home.profile }}" />
+                <div class="user-info col-sm-12 no-padding" style="padding-left: 10px">
+                    <div class="user-name">
+                        {{home.user}}
+                    </div>
+                    <div class="options">
+                        <a style="font-size:16px; cursor: pointer" ui-sref="login"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div id="feedBoard" class="feed-pane">
+            <h3>#List of Posts</h3>
+            <div ng-repeat="feed in home.feeds" class="feed-wrap col-sm-12 no-padding">
+                <div class="feed-info col-sm-1 no-padding">
+                    <span class="post-label">Views</span>
+                    <span class="post-count">0</span>
+                </div>
+                <div class="feed-info col-sm-11 no-padding">
+                    <div class="user-info">
+                        <span class="timestamp">Posted on {{ feed.created_time | date: 'short' }}</span>
+                    </div>
+                    <div class="feedContent" ng-if="feed.story">
+                        {{ feed.story}}
+                    </div>
+                    <div class="feedContent" ng-if="feed.message">
+                        {{ feed.message}}
+                    </div>
+                </div>
+            </div>
+
+            <form class="message-form" ng-submit="home.post()">
+                <div style="background-color:#e9ebee">
+                    <div class="form-check">
+                        <label class="form-check-label" style="color: grey;">
+                            <input type="checkbox" class="form-check-input" ng-model="home.isPublish">
+                            Do not publish this post
+                        </label>
+                    </div>
+                    <textarea class="form-control" rows="4" style="border-radius: 10px" maxlength="450"
+                              ng-model="home.feed" placeholder="Type a post..."></textarea>
+                    <button class="btn publish-btn" type="submit">Post</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -23,9 +66,16 @@
     /*global $*/
     $(function () {
         $('.list').hover(function () {
-            $(this).addClass('btn-info');
+            $(this).addClass('fb-theme');
         }, function () {
-            $(this).removeClass('btn-info');
+            $(this).removeClass('fb-theme');
+        });
+
+        $('.list-group li').click(function(e) {
+            e.preventDefault();
+
+            $(this).parent().find('li').removeClass('active');
+            $(this).addClass('active');
         });
     });
 </script>

@@ -77,6 +77,6 @@
         res.render("index.html");
     });
 
-    //push to codeship
+    //push to codeship for deployment
     app.listen(process.env.PORT, process.env.IP);
 }());

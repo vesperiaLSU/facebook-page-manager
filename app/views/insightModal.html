@@ -1,0 +1,26 @@
+<div style="z-index: 999999">
+    <div class="modal-header">
+        <h4 class="modal-title" style="display:inline-block">Insight Metrics</h4>
+        <a style="float:right"><i class="glyphicon glyphicon-remove" ng-click="in.close()"></i></a>
+    </div>
+    <div class="modal-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="font-size: 13px" class="text-center"><i class="icon-style glyphicon glyphicon-signal"></i>Post Impression</th>
+                    <th style="font-size: 13px" class="text-center"><i class="icon-style glyphicon glyphicon-signal"></i>People Impressed</th>
+                    <th style="font-size: 13px" class="text-center"><i class="icon-style glyphicon glyphicon-user"></i>Fan Reached</th>
+                    <th style="font-size: 13px" class="text-center"><i class="icon-style glyphicon glyphicon-user"></i>Fan Engaged</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">{{in.postImpression}}</td>
+                    <td class="text-center">{{in.postImpressionPeople}}</td>
+                    <td class="text-center">{{in.postFanReached}}</td>
+                    <td class="text-center">{{in.postFanEngaged}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

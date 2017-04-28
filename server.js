@@ -40,7 +40,7 @@
         function (req, res, user) {
             const options = {
                 method: 'GET',
-                uri: config.facebookAPI.getPageAccessToken,
+                uri: config.facebookAPI + '?fields=access_token',
                 qs: {
                     access_token: req.user
                 }
@@ -61,7 +61,9 @@
                 request(options)
                     .then(fbRes => {
                         const response = JSON.parse(fbRes);
-                        res.redirect('/#!/home?access_token=' + response.access_token + '&user=' + req.authInfo.displayName + '&url=' + url);
+                        const redirectUrl = '/#!/home?';
+                        var query = 'access_token=' + response.access_token + '&user=' + req.authInfo.displayName + '&url=' + url;
+                        res.redirect(redirectUrl + query);
                     })
                     .catch(error => {
                         console.log(error.message);

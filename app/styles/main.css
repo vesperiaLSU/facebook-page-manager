@@ -22,9 +22,39 @@
     border: none;
 }
 
+.pageInfo {
+    color: #4b4f56;
+    display: block;
+    padding: 7px 8px;
+    font-weight: 600;
+    cursor: default;
+    border-radius: 0 !important;
+    margin-right: 10px;
+}
+
+.postPic {
+    height: 200px;
+    display: block;
+}
+
+.pic-modal {
+  top: 30%;
+  width: 100%;
+}
+
+.numPos {
+    float: right;
+    padding-right: 10px;
+}
+
+.icon-style {
+    padding-right: 10px;
+    color: #90949c;
+}
+
 .fb-theme {
     color: #fff;
-    background-color: rgba(51,122,183, .7);
+    background-color: rgba(51, 122, 183, .7);
     border-color: #337ab7;
 }
 
@@ -75,7 +105,7 @@
 
 .sidebar .my-info {
     position: relative;
-    top: 450px;
+    top: 250px;
 }
 
 .sidebar .my-info .user-info .options {
@@ -144,6 +174,10 @@
     text-align: center;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .feedContent {
     font-size: 18px;
     font-family: Arial, Calibri, sans-serif;
@@ -181,4 +215,3 @@
 .no-padding {
     padding: 0;
 }
-

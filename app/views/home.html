@@ -2,15 +2,24 @@
     <div class="container main-content" style="padding-right: 0">
         <div class="sidebar">
             <div style="display: inline-grid;">
-                <img class="page-logo" style="height:180px" src="styles/lsu.jpg"/>
+                <img class="page-logo" style="height:180px" src="styles/lsu.jpg" />
                 <h5><strong>LSU Football Fan Club</strong></h5>
                 <p style="color: #90949c">@TheLSUFan</p>
             </div>
-            <ul role="menu" class="list-group" style="padding: 0;">
-                <li ng-click="home.getAllFeeds()" style="border: none; border-radius: 0" class="list list-group-item active">All Posts</li>
-                <li ng-click="home.getFeeds(true)" style="border: none; border-radius: 0" class="list list-group-item">Published Posts</li>
-                <li ng-click="home.getFeeds(false)" style="" class="list list-group-item">Unpublished Posts</li>
-            </ul>
+            <div>
+                <ul role="menu" class="list-group post" style="padding: 0;">
+                    <li ng-click="home.getAllFeeds()" class="list list-group-item active">All Posts</li>
+                    <li ng-click="home.getFeeds(true)" class="list list-group-item">Published Posts</li>
+                    <li ng-click="home.getFeeds(false)" class="list list-group-item">Unpublished Posts</li>
+                </ul>
+            </div>
+            <div style="padding-top: 70px">
+                <ul role="menu" class="list-group" style="padding: 0">
+                    <li class="pageInfo list-group-item"><i class="icon-style glyphicon glyphicon-thumbs-up"></i>Page Likes:<span class="numPos">{{home.fans}}</span></li>
+                    <li class="pageInfo list-group-item"><i class="icon-style glyphicon glyphicon-user"></i>Page Views:<span class="numPos">{{home.views}}</span></li>
+                    <li class="pageInfo list-group-item"><i class="icon-style glyphicon glyphicon-signal"></i>Page Reach:<span class="numPos">{{home.reaches}}</span></li>
+                </ul>
+            </div>
             <div class="my-info col-sm-12" style="display:inline-flex">
                 <img class="user-pic" ng-src="{{ home.profile }}" />
                 <div class="user-info col-sm-12 no-padding" style="padding-left: 10px">
@@ -28,19 +37,23 @@
             <h3>#List of Posts</h3>
             <div ng-repeat="feed in home.feeds" class="feed-wrap col-sm-12 no-padding">
                 <div class="feed-info col-sm-1 no-padding">
-                    <span class="post-label">Views</span>
-                    <span class="post-count">0</span>
+                    <span class="post-label">Likes</span>
+                    <span class="post-count">{{ feed.likes.data.length ? feed.likes.data.length : 0 }}</span>
                 </div>
                 <div class="feed-info col-sm-11 no-padding">
                     <div class="user-info">
                         <span class="timestamp">Posted on {{ feed.created_time | date: 'short' }}</span>
                     </div>
-                    <div class="feedContent" ng-if="feed.story">
-                        {{ feed.story}}
+                    <div class="btn-group" style="display:block" uib-dropdown>
+                        <div type="button" class="btn btn-default feedContent" ng-if="feed.story" tooltip-placement="top" uib-tooltip="Click post for insights" ng-click="home.viewInsights(feed.id)">
+                            {{ feed.story }}
+                            <img class='postPic' ng-if="feed.full_picture" ng-src="{{ feed.full_picture }}" />
+                        </div>
+                        <div type="button" class="btn btn-default feedContent" ng-if="feed.message" tooltip-placement="top" uib-tooltip="Click post for insights" ng-click="home.viewInsights(feed.id)">
+                            {{ feed.message }}
+                        </div>
                     </div>
-                    <div class="feedContent" ng-if="feed.message">
-                        {{ feed.message}}
-                    </div>
+
                 </div>
             </div>
 
@@ -52,8 +65,7 @@
                             Do not publish this post
                         </label>
                     </div>
-                    <textarea class="form-control" rows="4" style="border-radius: 10px" maxlength="450"
-                              ng-model="home.feed" placeholder="Type a post..."></textarea>
+                    <textarea class="form-control" rows="4" style="border-radius: 10px" maxlength="450" ng-model="home.feed" placeholder="Type a post..."></textarea>
                     <button class="btn publish-btn" type="submit">Post</button>
                 </div>
             </form>
@@ -64,14 +76,14 @@
 
 <script type="text/javascript">
     /*global $*/
-    $(function () {
-        $('.list').hover(function () {
+    $(function() {
+        $('.list').hover(function() {
             $(this).addClass('fb-theme');
-        }, function () {
+        }, function() {
             $(this).removeClass('fb-theme');
         });
 
-        $('.list-group li').click(function(e) {
+        $('.list-group.post li').click(function(e) {
             e.preventDefault();
 
             $(this).parent().find('li').removeClass('active');

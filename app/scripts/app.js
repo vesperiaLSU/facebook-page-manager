@@ -29,6 +29,15 @@
                         },
                         feeds: function(resourceService, $stateParams) {
                             return resourceService.getAllFeeds.get({token : $stateParams.access_token}).$promise;
+                        },
+                        fans: function(resourceService, $stateParams) {
+                            return resourceService.getPageFans.get({token : $stateParams.access_token}).$promise;
+                        },
+                        views: function(resourceService, $stateParams) {
+                            return resourceService.getPageViews.get({token : $stateParams.access_token}).$promise;
+                        },
+                        reaches: function(resourceService, $stateParams) {
+                            return resourceService.getPageReaches.get({token : $stateParams.access_token}).$promise;
                         }
                     }
                 });

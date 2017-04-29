@@ -20,6 +20,19 @@
 
             sendRequest(postTextOptions, res);
         });
+        
+    router.route('/deletePost/:id')
+        .delete(function(req, res, next) {
+            const deleteOptions = {
+                method: 'DELETE',
+                uri: config.facebookPostAPI + req.params.id,
+                qs: {
+                    access_token: req.query.token
+                }
+            };
+            
+            sendRequest(deleteOptions, res);
+        });
 
     router.route('/getAllFeeds')
         .get(function(req, res, next) {

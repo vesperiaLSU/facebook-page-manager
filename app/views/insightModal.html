@@ -5,7 +5,7 @@
     </div>
     <div class="modal-body">
         <h4 id='insightFeed'># {{in.feed}}</h4>
-        <table class="table">
+        <table class="table" style="margin: 20px 0 0 0">
             <thead>
                 <tr>
                     <th style="font-size: 13px" class="text-center"><i class="icon-style glyphicon glyphicon-signal"></i>Post Impression</th>
@@ -23,5 +23,8 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="modal-footer" style="height:60px;">
+        <button type="button" class="btn btn-danger" ng-click="in.deletePost()">Delete Post</button>
     </div>
 </div>

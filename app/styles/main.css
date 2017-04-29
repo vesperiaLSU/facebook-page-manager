@@ -147,10 +147,22 @@
     margin-top: 20px;
 }
 
+.confirm-modal {
+  top: 30%;
+}
+
+.emptyComment {
+  font-size: 16px;
+  font-family: Arial;
+  color: gray;
+  padding-top: 15px;
+}
+
 .sidebar .my-info .user-pic {
     display: inline-block;
     vertical-align: top;
     height: 50px;
+    width: 55px;
     border-radius: 5px;
 }
 

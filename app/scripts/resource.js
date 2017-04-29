@@ -11,7 +11,8 @@
                 getPageFans: $resource('/api/getPageFans', {}, {}),
                 getPageViews: $resource('/api/getPageViews', {}, {}),
                 getPageReaches: $resource('/api/getPageReaches', {}, {}),
-                getPostInsights: $resource('/api/getPostInsights/:id', {}, {})
+                getPostInsights: $resource('/api/getPostInsights/:id', {}, {}),
+                deletePost: $resource('/api/deletePost/:id', {}, {})
             };
         }
     ]);

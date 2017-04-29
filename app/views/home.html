@@ -34,7 +34,10 @@
         </div>
 
         <div id="feedBoard" class="feed-pane">
-            <h3>#List of Posts<i class='glyphicon glyphicon-question-sign' style="color:#337ab7; padding-left:10px; font-size: 20px" tooltip-placement="right" uib-tooltip="Click each post for insights"></i></h3>
+            <h3># {{ home.title }}<i class='glyphicon glyphicon-question-sign' style="color:#337ab7; padding-left:10px; font-size: 20px" tooltip-placement="right" uib-tooltip="Click on the post for insights metrics"></i></h3>
+            <div ng-if="home.feeds.length === 0" class="emptyComment">
+                <h4>Oops! You don't have post in {{ home.title }}.</h4>
+            </div>
             <div ng-repeat="feed in home.feeds" class="feed-wrap col-sm-12 no-padding">
                 <div class="feed-info col-sm-1 no-padding">
                     <span class="post-label">Likes</span>
@@ -50,7 +53,7 @@
                             <img class='postPic' ng-if="feed.full_picture" ng-src="{{ feed.full_picture }}" />
                         </div>
                         <div type="button" class="btn btn-default feedContent" ng-if="feed.message" ng-click="home.viewInsights(feed.id, feed.message)">
-                            {{ feed.message }}
+                            {{ feed.message }} <span class=></span>
                         </div>
                     </div>
 
@@ -70,9 +73,7 @@
                 </div>
             </form>
         </div>
-        <span us-spinner="{radius:40, width:12, length: 20}" spinner-key="spinner1"></span>
     </div>
-
 </div>
 
 <script type="text/javascript">

@@ -3,13 +3,14 @@
     'use strict';
 
     // define the controller for Home state
-    angular.module('fbPageManager').controller('HomeCtrl', ['$state', 'resourceService', 'auth', 'feeds', 'fans', 'views', 'reaches', '$uibModal','usSpinnerService',
-        function($state, resourceService, auth, feeds, fans, views, reaches, $uibModal,usSpinnerService) {
+    angular.module('fbPageManager').controller('HomeCtrl', ['$state', 'resourceService', 'auth', 'feeds', 'fans', 'views', 'reaches', '$uibModal', 'usSpinnerService',
+        function($state, resourceService, auth, feeds, fans, views, reaches, $uibModal, usSpinnerService) {
             const self = this;
             self.auth = auth;
             self.feeds = feeds.data;
             self.user = self.auth.user;
             self.profile = decodeURIComponent(self.auth.url);
+            self.title = "All Posts";
 
             var len = fans.data[0].values.length;
             self.fans = fans.data[0].values[len - 1].value;
@@ -31,14 +32,6 @@
                                 self.getAllFeeds();
                                 toastr.success('You just made a post to Facebook: ' + self.feed, 'Succeed!');
                                 self.feed = "";
-                                $('.list-group.post li').each(function(index, value) {
-                                    if (index != 0) {
-                                        $(value).removeClass('active');
-                                    }
-                                    else {
-                                        $(value).addClass('active');
-                                    }
-                                });
                             },
                             function(error) {
                                 toastr.error(error.message, 'Error!');
@@ -59,6 +52,15 @@
                     token: self.auth.access_token
                 }, function(res) {
                     self.feeds = res.data;
+                    self.title = "All Posts";
+                    $('.list-group.post li').each(function(index, value) {
+                        if (index != 0) {
+                            $(value).removeClass('active');
+                        }
+                        else {
+                            $(value).addClass('active');
+                        }
+                    });
                     usSpinnerService.stop('spinner1');
                 }, function(err) {
                     toastr.error(err.message, 'Failed to get feeds!');
@@ -73,6 +75,7 @@
                     isPublish: isPublish
                 }, function(res) {
                     self.feeds = res.data;
+                    self.title = isPublish ? "Published Posts" : "Unpublished Posts";
                     usSpinnerService.stop('spinner1');
                 }, function(err) {
                     toastr.error(err.message, 'Failed to get feeds!');
@@ -85,7 +88,7 @@
                 var modalInstance = $uibModal.open({
                     animation: true,
                     templateUrl: 'views/insightModal.html',
-                    controller: 'insightCtrl as in',
+                    controller: 'InsightCtrl as in',
                     backdrop: true,
                     keyboard: true,
                     size: 'dynamic',
@@ -96,15 +99,20 @@
                             id: id
                         }).$promise,
                         body: function() {
-                            return feed;
+                            return {
+                                id: id,
+                                feed: feed,
+                                token: self.auth.access_token
+                            };
                         }
                     }
                 });
 
                 modalInstance.result.then(ret => {
-                    // modal closed
+                    // a post was deleted
+                    self.getAllFeeds();
                 }, () => {
-                    // modal dismissed
+                    // nothing happened
                 });
             };
         }

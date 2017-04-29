@@ -110,8 +110,8 @@
 }
 
 .sidebar .my-info {
-    position: relative;
-    top: 250px;
+    position: fixed;
+    bottom: 70px;
 }
 
 .sidebar .my-info .user-info .options {
@@ -148,14 +148,14 @@
 }
 
 .confirm-modal {
-  top: 30%;
+    top: 30%;
 }
 
 .emptyComment {
-  font-size: 16px;
-  font-family: Arial;
-  color: gray;
-  padding-top: 15px;
+    font-size: 16px;
+    font-family: Arial;
+    color: gray;
+    padding-top: 15px;
 }
 
 .sidebar .my-info .user-pic {
@@ -232,4 +232,9 @@
 
 .no-padding {
     padding: 0;
+}
+
+#uploaderModalBody {
+    max-height: 400px;
+    overflow-y: auto;
 }

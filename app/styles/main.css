@@ -38,8 +38,8 @@
 }
 
 .pic-modal {
-  top: 30%;
-  width: 100%;
+    top: 30%;
+    width: 100%;
 }
 
 .numPos {
@@ -56,6 +56,12 @@
     color: #fff;
     background-color: rgba(51, 122, 183, .7);
     border-color: #337ab7;
+}
+
+#insightFeed {
+    background-color: #e9ebee;
+    padding: 10px;
+    margin-top: 0;
 }
 
 .main-content {

@@ -7,7 +7,7 @@
 
     // initialize the configuration of app
     angular
-        .module('fbPageManager', ['ui.router', 'ui.bootstrap', 'ngResource'])
+        .module('fbPageManager', ['ui.router', 'ui.bootstrap', 'ngResource', 'angularSpinner'])
         .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
             $urlRouterProvider.otherwise('/');
